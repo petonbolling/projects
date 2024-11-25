@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 
+    Author: ChatGPT
+    This page takes the user's first name, last name, and zip code, validates them, 
+    and displays a secret message if everything is correct.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Message Page</title>
+    <style>
+        /* Style for the entire page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Center the form on the page */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0073e6;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="button"] {
+            background-color: #0073e6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="button"]:hover {
+            background-color: #005bb5;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+
+        .secret-message {
+            background-color: #e0f7fa;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Add an image */
+        .image-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main content container -->
+    <div class="container">
+        <h1>Enter Your Information</h1>
+
+        <!-- Form to collect user inputs -->
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name" placeholder="Enter your first name">
+
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name" placeholder="Enter your last name">
+
+        <label for="zip-code">Zip Code:</label>
+        <input type="text" id="zip-code" placeholder="Enter your zip code (5 digits)">
+
+        <input type="button" value="Submit" onclick="validateInput()">
+
+        <!-- Section to display validation errors -->
+        <div id="error-message" class="error"></div>
+
+        <!-- Secret message that will be shown if all inputs are valid -->
+        <div id="secret-message" class="secret-message" style="display: none;">
+            <h2>Congratulations! Here's your secret message:</h2>
+            <p>You are a code master!</p>
+        </div>
+        
+        <!-- Display an image -->
+        <div class="image-container">
+            <img src="https://via.placeholder.com/200" alt="Placeholder Image">
+        </div>
+    </div>
+
+    <!-- JavaScript for validation -->
+    <script>
+        // Function to validate user inputs
+        function validateInput() {
+            // Get user inputs
+            var firstName = document.getElementById("first-name").value;
+            var lastName = document.getElementById("last-name").value;
+            var zipCode = document.getElementById("zip-code").value;
+
+            // Combine first name and last name
+            var fullName = firstName + " " + lastName;
+
+            // Clear any previous error messages
+            document.getElementById("error-message").innerHTML = "";
+
+            // Check if the full name has more than 20 characters
+            if (fullName.length > 20) {
+                document.getElementById("error-message").innerHTML = "Error: Full name must be less than 20 characters.";
+                return;
+            }
+
+            // Check if the zip code is a valid 5-digit number
+            var zipRegex = /^\d{5}$/;
+            if (!zipRegex.test(zipCode)) {
+                document.getElementById("error-message").innerHTML = "Error: Zip code must be exactly 5 digits.";
+                return;
+            }
+
+            // If everything is valid, display the secret message
+            document.getElementById("secret-message").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
