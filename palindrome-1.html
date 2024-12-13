@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 
+    Author: Peyton Bolling
+    Purpose: Palindrome Checker with loop and a nice user experience
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        /* Basic styling for a nice user experience */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #message {
+            font-size: 1.2em;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        #exit-button {
+            background-color: #e74c3c;
+        }
+
+        #exit-button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main container for the palindrome checker -->
+    <div class="container">
+        <h1>Palindrome Checker</h1>
+        <!-- Input field to take the user string -->
+        <input type="text" id="userInput" placeholder="Enter a word or phrase">
+        <!-- Button to trigger palindrome check -->
+        <button onclick="checkPalindrome()">Check</button>
+        <!-- Message to show palindrome result -->
+        <p id="message"></p>
+        <!-- Exit button to leave the loop -->
+        <button id="exit-button" onclick="exitLoop()">Exit</button>
+    </div>
+
+    <script>
+        // Function to check if a string is a palindrome
+        function checkPalindrome() {
+            // Get the user input and remove spaces and convert to lowercase
+            let userInput = document.getElementById("userInput").value.trim().toLowerCase();
+
+            // Remove spaces from the input for accurate comparison
+            let cleanedInput = userInput.replace(/\s+/g, "");
+
+            // Check if the cleaned input is equal to its reverse
+            let reversedInput = cleanedInput.split('').reverse().join('');
+
+            // Display the result based on palindrome check
+            if (cleanedInput === reversedInput) {
+                document.getElementById("message").textContent = `"${userInput}" is a palindrome!`;
+                document.getElementById("message").style.color = "green";
+            } else {
+                document.getElementById("message").textContent = `"${userInput}" is NOT a palindrome.`;
+                document.getElementById("message").style.color = "red";
+            }
+
+            // Clear the input field for the next word
+            document.getElementById("userInput").value = '';
+        }
+
+        // Function to exit the loop (close interaction)
+        function exitLoop() {
+            // Display exit message and disable input and button
+            document.getElementById("message").textContent = "Thank you for using the Palindrome Checker!";
+            document.getElementById("message").style.color = "blue";
+            document.getElementById("userInput").disabled = true;
+            document.querySelector("button").disabled = true;
+            document.getElementById("exit-button").disabled = true;
+        }
+    </script>
+
+</body>
+</html>
