@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input & Validation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>User Input & Validation</h1>
+        <a href="index.html">Back to Landing Page</a>
+    </header>
+    <main>
+        <form id="validationForm">
+            <input type="text" id="userName" placeholder="Enter your name" required />
+            <input type="email" id="userEmail" placeholder="Enter your email" required />
+            <button type="submit">Submit</button>
+        </form>
+        <p id="validationMessage"></p>
+    </main>
+
+    <script>
+        document.getElementById('validationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('userName').value;
+            const email = document.getElementById('userEmail').value;
+            const message = document.getElementById('validationMessage');
+
+            if (name && email) {
+                message.textContent = 'Form submitted successfully!';
+                message.style.color = 'green';
+            } else {
+                message.textContent = 'Please fill out all fields!';
+                message.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>
